@@ -356,11 +356,50 @@ The output is compared with the result obtained from native GCC execution to ver
 ### Screenshot – Spike Simulation
 
 <img width="1920" height="923" alt="VirtualBox_riscv_teju_23_11_2026_16_25_57" src="https://github.com/user-attachments/assets/074a1f13-684a-4a59-8cc2-10d3cfcc120b" />
+## Debugging Using Spike
 
+The Spike debugger helps inspect the execution of a RISC-V program step by step. It allows us to examine the program counter, register values and instruction execution.
 
-### Result
+### Starting the Spike Debugger
 
-The RISC-V executable is successfully disassembled using Objdump and executed using the Spike simulator. The simulation produces the expected output of **5050**, confirming the program's correct execution.
+Use the following command to start the Spike debugger:
+
+```bash
+spike -d pk sum1ton.o
+```
+
+**Command Explanation:**
+
+| Command | Purpose |
+|---|---|
+| `spike` | Starts the RISC-V simulator. |
+| `-d` | Enables debugging mode. |
+| `pk` | Loads the Proxy Kernel. |
+| `sum1ton.o` | Specifies the RISC-V executable file. |
+
+### Debugging Commands
+
+The following commands are used inside the Spike debug interface:
+
+```text
+until pc 0 100b0
+reg 0 a2
+reg 0 sp
+q
+```
+
+###  Information Observed During Debugging
+
+The Spike debug interface allows us to inspect:
+
+- **Program Counter (PC):** Shows the address of the current instruction.
+- **Register Values:** Displays the values stored in processor registers.
+- **Instruction Execution:** Helps examine how instructions execute.
+- **Step-by-Step Execution:** Allows us to understand the program flow.
+
+### Screenshot
+<img width="1920" height="1080" alt="Screenshot 2026-11-23 165807" src="https://github.com/user-attachments/assets/54c558cf-6af5-475a-b442-5aebcc380212" />
+
 ## 8. Experiment – Understanding Signed and Unsigned Integer Representation
 
 ### Objective
